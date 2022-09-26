@@ -19,6 +19,7 @@
     "concurrently": "^7.3.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
+    "ethereumjs-tx": "^2.1.2",
     "ethers": "^5.7.0",
     "express": "^4.18.1",
     "gsap": "^3.11.1",
@@ -41,6 +42,7 @@
     "snarkjs": "git+https://github.com/kimchan122/snarkjs.git",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.0",
+    "web3": "^1.8.0",
     "web3-react": "^5.0.5"
   },
   "scripts": {

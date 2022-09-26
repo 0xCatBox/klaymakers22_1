@@ -11,7 +11,7 @@ const SideNavigationBar = () => {
         <ProSidebar style={{ height: "100%", minWidth: "200px", width: "200px", position: "fixed", backgroundColor: "#2C3335"}}>
             <SidebarHeader>
                 <Menu iconShape="square">
-                    <h3 className="sidebar-header">D-Ad</h3>
+                    <h3 className="sidebar-header">Ethpplication</h3>
                 </Menu>
             </SidebarHeader>
 

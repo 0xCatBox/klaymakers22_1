@@ -33,7 +33,7 @@ let ArrfromEdit_temp2 = null;
 
 const Dashboard = () => {
     console.log(localStorage);
-    if (localStorage != null && localStorage.length>0) {
+    if (localStorage.getItem("arr") != null && localStorage.length>0) {
         // console.log(localStorage);
         ArrfromEdit_temp = localStorage.getItem("arr");
         // console.log(ArrfromEdit_temp);

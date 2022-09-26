@@ -187,7 +187,7 @@ const MakeAds = () => {
                     <strong className="me-auto">Notification: {title}</strong>
                     <small>now</small>
                 </Toast.Header>
-                <Toast.Body className="Dark">Woohoo, your {title} D-Ad has been successfully uploaded!</Toast.Body>
+                <Toast.Body className="Dark">Woohoo, your {title} ad has been successfully uploaded!</Toast.Body>
             </Toast>
         </div >
     )

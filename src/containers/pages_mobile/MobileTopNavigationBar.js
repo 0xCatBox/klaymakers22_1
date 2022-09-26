@@ -32,7 +32,7 @@ const MobileTopNavigationBar = () => {
             <Container>
                 <Row style={{alignItems: "center"}}>
                     <Col>
-                        <span className="MbTitle">D-Ad</span>
+                        <span className="MbTitle">Ethpplication</span>
                     </Col>
                     <Col xs={1} sm={3} md={7}>
 
