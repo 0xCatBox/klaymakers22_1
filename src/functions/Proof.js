@@ -1,23 +1,9 @@
 import React, { useState } from "react";
 // import "./App.css";
 
-import { Field, Input, Text, Button, Link } from "rimble-ui";
+import { Field, Input, Text, Button } from "rimble-ui";
 
 const snarkjs = require("snarkjs");
-
-const getSolidityProofArray = (proof) => {
-	let proofList = [
-		proof["pi_a"][0],
-		proof["pi_a"][1],
-		proof["pi_b"][0][1],
-		proof["pi_b"][0][0],
-		proof["pi_b"][1][1],
-		proof["pi_b"][1][0],
-		proof["pi_c"][0],
-		proof["pi_c"][1],
-	];
-	return proofList;
-};
 
 
 const makeProof = async (_proofInput, _wasm, _zkey) => {
@@ -51,7 +37,7 @@ function Proof() {
 
 	const runProofs = () => {
 		console.log(b.length);
-		if (a.length == 0 || b.length == 0) {
+		if (a.length === 0 || b.length === 0) {
 			return;
 		}
 		let proofInput = { "fashion" : ["0","0","22","0","0","0","0","0"],

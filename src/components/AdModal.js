@@ -1,89 +1,69 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import contract from '../contracts/Ads.json';
-import FTcontract from '../contracts/EADtoken.json'
-import { ethers } from "ethers";
+import FTcontract from '../contracts/D_Ad.json'
 import { useWeb3React } from "@web3-react/core";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import dotenv from "dotenv";
 dotenv.config();
 
-const Web3 = require('web3');
-// const FTcontract = require('./EADtoken.json');
-// require('dotenv').config();
-const Tx = require('ethereumjs-tx').Transaction;
+const ACCESS_KEY_ID = 'KASKAJLEGBNU55WU19J9KWT9';
+const SECTET_ACCESS_KEY = 'u5xCeiRKPTKaZ75ZegKBxmIZ6VyZmIJQ92-0-DFb';
+const chainid = '1001';
+const option = {
+  headers : [
+    {
+      name : "Authoriztion",
+      value : "Basic " + Buffer.from(ACCESS_KEY_ID + ":" + SECTET_ACCESS_KEY).toString("base64")
+    },
+    {name : "x-chain-id", value : chainid}
+  ]
+}
 
-const {REACT_APP_CONTRACT, REACT_APP_PRIVATE_KEY, REACT_APP_RINKEBY_URL, REACT_APP_TO_ADDRESS, REACT_APP_DEPLOY_ADDRESS} = process.env;
-console.log(process.env.REACT_APP_CONTRACT)
-console.log(REACT_APP_CONTRACT)
-console.log(REACT_APP_TO_ADDRESS)
+const Caver = require('caver-js');
+
+const {REACT_APP_CONTRACT, REACT_APP_PRIVATE_KEY, REACT_APP_BAOBAB_URL, REACT_APP_DEPLOY_ADDRESS} = process.env;
 const FTabi = FTcontract.abi;
-let url = REACT_APP_RINKEBY_URL;
 
-const contractAddress = "0xB46Da19840033fdaE1635f9EDe38E0a7ed8241E9";
-const abi = contract.abi;
 
 const AdModal = ({ data, normaltype }) => {
 
   console.log(normaltype);
-  const { account, activate } = useWeb3React();
-
+  const { account } = useWeb3React();
   const [videoended, setVideoended] = useState(false);
-
   function VideoEnd(e) {
     setVideoended(true);
   }
+  
+  const mintERC20Handler = async() => {
+    const caver = new Caver(new Caver.providers.HttpProvider(REACT_APP_BAOBAB_URL));
+    const mycontract = new caver.contract(FTabi,REACT_APP_CONTRACT, option);
+    caver.klay.getBalance(REACT_APP_DEPLOY_ADDRESS).then(console.log);
+    
+    
+    
+    mycontract.methods.getBalance(account).call().then((response) => {
+      const balance = response
+      console.log(`Balance : ${balance}`);
+    })
 
-  const mintERC20Handler = () => {
-    // try {
-    //   const { ethereum } = window;
-    //   if (ethereum) {
-    //     const provider = new ethers.providers.Web3Provider(ethereum);
-    //     const signer = provider.getSigner();
-    //     const Ads = new ethers.Contract(contractAddress, abi, signer);
-
-    //     console.log("Initialize payment");
-    //     let erctxn = await Ads.reward(account);
-
-    //     console.log("mining... please wait");
-    //     await erctxn.wait();
-
-    //     console.log(`mind, see transaction: ${erctxn.hash}`);
-
-    //   } else {
-    //     console.log("Ethereum object does not exist");
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    // }
-    const web3 = new Web3(new Web3.providers.HttpProvider(url));
-
-    const contract = new web3.eth.Contract(FTabi, REACT_APP_CONTRACT)
-    const functionAbi = contract.methods.mintFT(REACT_APP_TO_ADDRESS).encodeABI();
-
-    const txData = {
-        gasLimit: web3.utils.toHex(700000),
-        gasPrice: web3.utils.toHex(10e9),
+    try {
+      const deployer = caver.wallet.keyring.createFromPrivateKey(REACT_APP_PRIVATE_KEY);
+      caver.wallet.add(deployer);
+  
+      const recipt = await mycontract.methods.transferReward(account).send({
         from: REACT_APP_DEPLOY_ADDRESS,
-        to: REACT_APP_CONTRACT,
-        data: functionAbi
-    };
+        gas: '210000000'
+      });
+      
+      caver.klay.getBalance(REACT_APP_DEPLOY_ADDRESS).then(console.log);
+      alert("50 CAT이 지급되었습니다. ");
+      console.log(recipt);
+      caver.klay.getBalance(REACT_APP_DEPLOY_ADDRESS).then(console.log);
+    } catch(e) {
+      console.log(e);
+    }
 
-    const sendRawTransaction = txData =>
-        web3.eth.getTransactionCount(REACT_APP_DEPLOY_ADDRESS).then(txCount => {
-            console.log(txCount);
-            const newNonce = web3.utils.toHex(txCount)
-            const transaction = new Tx({ ...txData, nonce: newNonce }, { chain: 'rinkeby' })
-
-            transaction.sign(Buffer.from(REACT_APP_PRIVATE_KEY, 'hex'))  // 수정영역
-            const serializedTx = transaction.serialize().toString('hex')
-            return web3.eth.sendSignedTransaction('0x' + serializedTx)
-        })
-
-    sendRawTransaction(txData).then(result => {
-        console.log(result.transactionHash);
-    });
   }
 
   return (
@@ -107,7 +87,7 @@ const AdModal = ({ data, normaltype }) => {
         <p style={{ color: "$ffffff" }}>{data.metadata.keyvalues.script}</p>
         
         { videoended ?
-          (normaltype == "true" ?
+          (normaltype === "true" ?
             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Let's get reward!</Tooltip>}>
               <span className="d-inline-block">
                 <Button variant="primary" size="sm" disabled={false} onClick={mintERC20Handler} style={{ backgroundColor: "#E6007A", borderColor: "#E6007A" }}>

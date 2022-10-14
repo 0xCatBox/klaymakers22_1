@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
 import contract from '../../contracts/RegisterAds.json';
-import { ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
-import AdModal from "../../components/AdModal";
-import Proof from "../../functions/Proof";
+import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
 import AdResults from "../../components/AdResults";
 import AdTargetedResults from "../../components/AdTargetedResults";
-import Spinner from 'react-bootstrap/Spinner';
 import Loading from "react-fullscreen-loading";
+// import { ethers } from "ethers";
+// import AdModal from "../../components/AdModal";
+// import Proof from "../../functions/Proof";
+// import Spinner from 'react-bootstrap/Spinner';
 
 // import zkeyFile from '../../functions/ad_js/ad_0001.zkey';
 // import verificationKey from '../../functions/ad_js/verification_key.json';
@@ -53,8 +53,8 @@ const MobileDashboard = () => {
     const [signals, setSignals] = useState("");
     const [isValid, setIsValid] = useState(false);
 
-    const contractAddress = "0x5293cbd6fe9A2981355eEe561c01fe513620f14A";
-    const abi = contract.abi;
+    // const contractAddress = "0x5293cbd6fe9A2981355eEe561c01fe513620f14A";
+    // const abi = contract.abi;
 
     // function setModaldata(data) {
     //     setLgShow(true);
@@ -97,7 +97,7 @@ const MobileDashboard = () => {
     }
 
     useEffect(() => {
-        if ((loading && results==null) || realresults==null) {
+        if ((loading && results===null) || realresults===null) {
             AdvertisementComponents();
         }
     }, [results]);

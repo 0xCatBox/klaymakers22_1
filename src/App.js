@@ -15,7 +15,6 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from "@ethersproject/providers";
 import MetamaskProvider from "./functions/MetamaskProvider";
-import { isMobile } from 'react-device-detect';
 import { BrowserView, MobileView } from 'react-device-detect';
 import MobileBottomNavigationBar from './containers/pages_mobile/MobileBottomNavigationBar';
 import MobileTopNavigationBar from './containers/pages_mobile/MobileTopNavigationBar';

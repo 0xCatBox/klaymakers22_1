@@ -8,8 +8,8 @@ import Toast from 'react-bootstrap/Toast';
 import Spinner from 'react-bootstrap/Spinner';
 import RangeSlider from 'react-bootstrap-range-slider';
 
-import { ethers } from "ethers";
-import contract from '../../contracts/RegisterAds.json';
+// import { ethers } from "ethers";
+// import contract from '../../contracts/RegisterAds.json';
 
 import VideoToIPFS from '../../functions/VideoToIPFS';
 import { useWeb3React } from "@web3-react/core";
@@ -141,7 +141,7 @@ const MobileMakeAds = () => {
                 </Row>
                 <div style={{ textAlign: "right" }}>
                     {account ?
-                        (statusbtn == true ?
+                        (statusbtn === true ?
                             (
                                 <Button disabled style={{ width: "100%", marginBottom:"10px", backgroundColor: "#E6007A", borderColor: "#E6007A" }}>
                                     <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />Wait...

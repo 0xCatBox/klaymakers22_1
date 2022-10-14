@@ -54,27 +54,27 @@ const MobileEditInfo = () => {
 
         let temp = [, , , , ,];
 
-        if (state == 1) {
+        if (state === 1) {
             temp = ca_fashion;
             temp[index] = value;
             setCa_fasion(temp);
-        } else if (state == 2) {
+        } else if (state === 2) {
             temp = ca_food;
             temp[index] = value;
             setCa_food(temp);
-        } else if (state == 3) {
+        } else if (state === 3) {
             temp = ca_travel;
             temp[index] = value;
             setCa_travel(temp);
-        } else if (state == 4) {
+        } else if (state === 4) {
             temp = ca_medical;
             temp[index] = value;
             setCa_medical(temp);
-        } else if (state == 5) {
+        } else if (state === 5) {
             temp = ca_education;
             temp[index] = value;
             setCa_education(temp);
-        } else if (state == 6) {
+        } else if (state === 6) {
             temp = ca_exercise;
             temp[index] = value;
             setCa_exercise(temp);
@@ -97,7 +97,7 @@ const MobileEditInfo = () => {
             <Container>
                 <Row>
                     <Col>
-                        {state == 1 ?
+                        {state === 1 ?
                             <FadeInAnimation>
                                 <h2>Fashion</h2>
                                 <div>Choose what interests you!</div>
@@ -112,7 +112,7 @@ const MobileEditInfo = () => {
                                     </Stack>
                                 </MDBBtnGroup>
                             </FadeInAnimation>
-                            : state == 2 ?
+                            : state === 2 ?
                                 <FadeInAnimation>
                                     <h2>Food</h2>
                                     <div>Choose what interests you!</div>
@@ -127,7 +127,7 @@ const MobileEditInfo = () => {
                                         </Stack>
                                     </MDBBtnGroup>
                                 </FadeInAnimation>
-                                : state == 3 ?
+                                : state ===3 ?
                                     <FadeInAnimation>
                                         <h2>Travel</h2>
                                         <div>Choose what interests you!</div>
@@ -142,7 +142,7 @@ const MobileEditInfo = () => {
                                             </Stack>
                                         </MDBBtnGroup>
                                     </FadeInAnimation>
-                                    : state == 4 ?
+                                    : state === 4 ?
                                         <FadeInAnimation>
                                             <h2>Medical</h2>
                                             <div>Choose what interests you!</div>
@@ -157,7 +157,7 @@ const MobileEditInfo = () => {
                                                 </Stack>
                                             </MDBBtnGroup>
                                         </FadeInAnimation>
-                                        : state == 5 ?
+                                        : state === 5 ?
                                             <FadeInAnimation>
                                                 <h2>Education</h2>
                                                 <div>Choose what interests you!</div>
@@ -172,7 +172,7 @@ const MobileEditInfo = () => {
                                                     </Stack>
                                                 </MDBBtnGroup>
                                             </FadeInAnimation>
-                                            : state == 6 ?
+                                            : state === 6 ?
                                                 <FadeInAnimation>
                                                     <h2>Exercise</h2>
                                                     <div>Choose what interests you!</div>
@@ -194,10 +194,10 @@ const MobileEditInfo = () => {
             <Container className="EI-page-button">
                 <Row>
                     <Col>
-                        {state == 1 ? <></> : <button className="Mb-edit-nextprev-btn" onClick={(e) => setState(state => state - 1) || setLRState("left")}><FaAngleLeft />prev</button>}
+                        {state === 1 ? <></> : <button className="Mb-edit-nextprev-btn" onClick={(e) => setState(state => state - 1) || setLRState("left")}><FaAngleLeft />prev</button>}
                     </Col>
                     <Col>
-                        {state == 6 ? <button className="Mb-edit-nextprev-btn" onClick={(e) => Saveinfo()}><FaRegSave />save</button> : <button className="Mb-edit-nextprev-btn" onClick={(e) => setState(state => state + 1) || setLRState("right")}>next<FaAngleRight /></button>}
+                        {state === 6 ? <button className="Mb-edit-nextprev-btn" onClick={(e) => Saveinfo()}><FaRegSave />save</button> : <button className="Mb-edit-nextprev-btn" onClick={(e) => setState(state => state + 1) || setLRState("right")}>next<FaAngleRight /></button>}
                     </Col>
                 </Row>
             </Container>

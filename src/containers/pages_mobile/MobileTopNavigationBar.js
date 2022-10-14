@@ -2,14 +2,14 @@ import React from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { MdOutlineSpaceDashboard, MdModeEditOutline, MdAddToPhotos } from 'react-icons/md';
-import { FaGithub, FaEdit } from 'react-icons/fa';
-import { TbWorld } from 'react-icons/tb';
-import { NavLink } from "react-router-dom";
+// import { MdOutlineSpaceDashboard, MdModeEditOutline, MdAddToPhotos } from 'react-icons/md';
+// import { FaGithub, FaEdit } from 'react-icons/fa';
+// import { TbWorld } from 'react-icons/tb';
+// import { NavLink } from "react-router-dom";
 import injected from '../../functions/connector';
 import { FaWallet } from "react-icons/fa";
 import { useWeb3React } from "@web3-react/core";
-
+import D_Adicon from "../../image/D-Ad.png";
 const MobileTopNavigationBar = () => {
 
     const { account, active, activate } = useWeb3React();
@@ -32,7 +32,7 @@ const MobileTopNavigationBar = () => {
             <Container>
                 <Row style={{alignItems: "center"}}>
                     <Col>
-                        <span className="MbTitle">Ethpplication</span>
+                        <img className="MbTitle" src = {D_Adicon} style={{marginLeft: "20px",width: "150px"}}></img>
                     </Col>
                     <Col xs={1} sm={3} md={7}>
 

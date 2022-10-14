@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Col, Container, Modal, Row } from "react-bootstrap";
-import contract from '../../contracts/RegisterAds.json';
-import { ethers } from "ethers";
+import {  Container, Row } from "react-bootstrap";
 import { useWeb3React } from "@web3-react/core";
-import AdModal from "../../components/AdModal";
-import Proof from "../../functions/Proof";
 import AdResults from "../../components/AdResults";
 import AdTargetedResults from "../../components/AdTargetedResults";
-import Spinner from 'react-bootstrap/Spinner';
 import Loading from "react-fullscreen-loading";
 
 // import zkeyFile from '../../functions/ad_js/ad_0001.zkey';
@@ -53,8 +48,6 @@ const Dashboard = () => {
     const [signals, setSignals] = useState("");
     const [isValid, setIsValid] = useState(false);
 
-    const contractAddress = "0x5293cbd6fe9A2981355eEe561c01fe513620f14A";
-    const abi = contract.abi;
 
     // function setModaldata(data) {
     //     setLgShow(true);
@@ -135,7 +128,7 @@ const Dashboard = () => {
                 verifyProof(verificationKey, _signals, _proof).then((_isValid) => {
                     setIsValid(_isValid);
                 });
-                if (_signals[0] == "6") {
+                if (_signals[0] === "6") {
                     temp.push(d);
                 }
             })
